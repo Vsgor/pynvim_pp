@@ -257,13 +257,13 @@ async def conn(
         async with client(
             die, loop=loop, socket=socket, default=default, ext_types=ext_types
         ) as rpc:
-            for cls in (_Nvim, Atomic, *ext_types, _Lua, _Fn, _Vvars, _Cur):
-                c = cast(HasApi, cls)
+            for cls1 in (_Nvim, Atomic, *ext_types, _Lua, _Fn, _Vvars, _Cur):
+                c = cast(HasApi, cls1)
                 api = Api(rpc=rpc, prefix=c.prefix)
                 c.init_api(api=api)
 
-            for cls in (_Nvim, _Lua, RPC):
-                cl = cast(HasChan, cls)
+            for cls2 in (_Nvim, _Lua, RPC):
+                cl = cast(HasChan, cls2)
                 cl.init_chan(chan=rpc.chan)
 
             yield rpc
