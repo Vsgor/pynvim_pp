@@ -11,6 +11,7 @@ class HLgroup:
     cterm: AbstractSet[str] = frozenset()
     ctermfg: Optional[int] = None
     ctermbg: Optional[int] = None
+    gui: AbstractSet[str] = frozenset()
     guifg: Optional[str] = None
     guibg: Optional[str] = None
 
@@ -24,10 +25,14 @@ def highlight(*groups: HLgroup) -> Atomic:
         cterm = f"cterm={_cterm}"
         ctermfg = f"ctermfg={group.ctermfg}" if group.ctermfg else ""
         ctermbg = f"ctermbg={group.ctermbg}" if group.ctermbg else ""
+        gui = f"gui={','.join(group.gui) or 'NONE'}"
         guifg = f"guifg={group.guifg}" if group.guifg else ""
         guibg = f"guibg={group.guibg}" if group.guibg else ""
 
-        hl_line = f"highlight {df} {name} {cterm} {ctermfg} {ctermbg} {guifg} {guibg}"
+        hl_line = (
+            f"highlight {df} {name} {cterm} {ctermfg} {ctermbg} {gui} {guifg} {guibg}"
+        )
+
         atomic.command(hl_line)
 
     return atomic
