@@ -16,7 +16,7 @@ class KeymapOpts:
     unique: bool = False
 
 
-_KEY_MODES = {"n", "o", "v", "i", "c", "t"}
+_KEY_MODES = {"n", "o", "v", "x", "i", "c", "t"}
 
 
 class _K:
