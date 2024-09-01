@@ -9,7 +9,7 @@ from itertools import chain
 from os.path import normpath
 from pathlib import Path, PurePath
 from string import ascii_uppercase
-from threading import Event, Thread
+from threading import Thread
 from typing import (
     Any,
     AsyncIterator,
